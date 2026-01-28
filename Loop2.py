@@ -50,7 +50,7 @@ def loop2(A, B, C):
 x,y = loop2(A,B,C)
 
 #Laptop/jetson nano optimized using numba
-@njit(parallel=True)
+@njit()
 def loop2_sol(A, B, C):
     a=np.copy(A)
     b=np.copy(B)

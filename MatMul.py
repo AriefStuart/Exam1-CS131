@@ -59,17 +59,14 @@ x=sgemm_manual (alpha,Am, Bm, beta, Dm)
 
 # SGEMM Form => C := alpha*A*B + beta*C,
 # We create new variable because the images are too big
-Am=np.random.rand(100,500)
-Bm=np.random.rand(500,250)
-Dm=np.random.rand(100,250)
 # alpha and beta are constant floating point values, reuse them for your solution
 alpha = 1.5
 beta = 1.2 
 
-@njit(parallel=True)
+@njit()
 def sgemm_solution (alpha,A, B, beta, D):
    d=np.copy(D)
-   for i in prange(d.shape[0]):
+   for i in range(d.shape[0]):
        for j in range(d.shape[1]):
            d[i,j] *= beta
        for k in range(A.shape[1]):
